@@ -1,0 +1,29 @@
+{
+  "name": "time-announcer",
+  "version": "0.1.0",
+  "description": "在恰当的时刻向 agent 注入当前时间、时区和经过时长，避免 agent 估计时间出错；行为对齐 deepseek-harness 的 time-context 插件。",
+  "description_i18n": {
+    "en": "Announces the current time, time zone and elapsed time to the agent at the right moments, so it does not have to estimate the clock. Behaviour follows deepseek-harness time-context.",
+    "zh-CN": "在恰当的时刻向 agent 注入当前时间、时区和经过时长，避免 agent 估计时间出错；行为对齐 deepseek-harness 的 time-context 插件。"
+  },
+  "author": { "name": "Eric" },
+  "license": "MIT",
+  "hooks": "hooks",
+  "userConfig": {
+    "time_zone": {
+      "type": "string",
+      "default": "",
+      "description": "显示时区（IANA 名称，如 Asia/Shanghai）。留空时使用系统时区。"
+    },
+    "refresh_interval_ms": {
+      "type": "string",
+      "default": "600000",
+      "description": "同一会话中两次注入之间的最小间隔（毫秒）。默认 600000（10 分钟）；0 表示每个符合条件的步骤都注入。"
+    },
+    "inject_on_every_turn": {
+      "type": "string",
+      "default": "true",
+      "description": "每个新用户回合开始时总是注入一次时间读数。ZCode 的 hook 上下文按回合生效，建议保持 true；设为 false 时严格按 refresh_interval_ms 抑制。"
+    }
+  }
+}

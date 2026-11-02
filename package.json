@@ -1,0 +1,14 @@
+{
+  "name": "zcode-plugin-time-announcer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ZCode plugin that announces the current time, time zone and elapsed time at the right moments, following deepseek-harness time-context.",
+  "license": "MIT",
+  "author": "Eric",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/announcer.test.cjs test/hook.test.cjs test/state.test.cjs test/time.test.cjs"
+  }
+}

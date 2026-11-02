@@ -1,0 +1,25 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "time-announcer",
+  "description": "Announce the current time, time zone and elapsed time to the ZCode agent at the right moments.",
+  "owner": { "name": "Eric" },
+  "plugins": [
+    {
+      "name": "time-announcer",
+      "displayName": "Time Announcer",
+      "displayName_i18n": {
+        "zh-CN": "时间播报器"
+      },
+      "description": "在恰当的时刻向 agent 注入当前时间、时区和经过时长，避免 agent 估计时间出错；行为对齐 deepseek-harness 的 time-context 插件。",
+      "description_i18n": {
+        "en": "Announces the current time, time zone and elapsed time to the agent at the right moments, so it does not have to estimate the clock. Behaviour follows deepseek-harness time-context.",
+        "zh-CN": "在恰当的时刻向 agent 注入当前时间、时区和经过时长，避免 agent 估计时间出错；行为对齐 deepseek-harness 的 time-context 插件。"
+      },
+      "version": "0.1.0",
+      "author": { "name": "Eric" },
+      "keywords": ["time", "clock", "context", "hooks", "deepseek-harness", "zcode"],
+      "category": "productivity",
+      "source": "./"
+    }
+  ]
+}

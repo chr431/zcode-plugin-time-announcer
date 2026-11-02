@@ -36,7 +36,7 @@ test("resolves the state directory from plugin data or an override", () => {
 });
 
 test("hashes session ids into safe file names", () => {
-  const directory = "C:/tmp/state";
+  const directory = path.join(os.tmpdir(), "time-announcer-state-test");
   const file = statePath(directory, "session/with/slashes and spaces");
   const expected = crypto.createHash("sha256").update("session/with/slashes and spaces").digest("hex");
   assert.equal(path.dirname(file), path.resolve(directory));

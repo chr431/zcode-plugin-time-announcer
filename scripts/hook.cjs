@@ -23,7 +23,7 @@ const {
 } = require("./lib/state.cjs");
 
 const MAX_STDIN_BYTES = 1024 * 1024;
-const STDIN_TIMEOUT_MS = 5000;
+const STDIN_TIMEOUT_MS = 3000;
 
 // A closed stdout must not turn a clock announcement into an unhandled error.
 process.stdout.on("error", () => {});
@@ -86,9 +86,17 @@ async function main() {
 
   const input = await readStdinJson();
   if (input === null) return;
-  const config = readConfig();
-  const zone = resolveTimeZone(config.timeZone);
-  for (const warning of [...config.warnings, ...zone.warnings]) warn(warning);
+
+  // Only events that can emit a reading need configuration and a formatter.
+  const needsReading = event !== "stop" && event !== "session-start";
+  let config = {};
+  /** @type {{ timeZone: string, formatter: Intl.DateTimeFormat }|null} */
+  let zone = null;
+  if (needsReading) {
+    config = readConfig();
+    zone = resolveTimeZone(config.timeZone);
+    for (const warning of [...config.warnings, ...zone.warnings]) warn(warning);
+  }
 
   const now = Date.now();
   const sessionId =
